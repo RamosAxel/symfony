@@ -13,6 +13,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Advert
 {
     /**
+     * @ORM\OneToOne(targetEntity="OC\PlatformBundle\Entity\Image", cascade={"persist"})
+     */
+    private $image;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -53,6 +58,17 @@ class Advert
      * @ORM\Column(name="published", type="boolean")
      */
     private $published = true;
+
+    public function setImage(Image $image = null)
+    {
+        $this->image = $image;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+    
 
     public function __construct()
     {

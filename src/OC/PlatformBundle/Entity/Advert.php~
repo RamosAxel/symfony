@@ -13,6 +13,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Advert
 {
     /**
+     * @ORM\OneToOne(targetEntity="OC\PlatformBundle\Entity\Image", cascade={"persist"})
+     */
+    private $image;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -54,6 +59,21 @@ class Advert
      */
     private $published = true;
 
+    public function setImage(Image $image = null)
+    {
+        $this->image = $image;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+    
+
+    public function __construct()
+    {
+        $this->date = new \Datetime();
+    }
 
     /**
      * Get id
@@ -63,6 +83,16 @@ class Advert
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
     }
 
     /**
@@ -79,13 +109,13 @@ class Advert
     }
 
     /**
-     * Get date
+     * Get title
      *
-     * @return \DateTime 
+     * @return string
      */
-    public function getDate()
+    public function getTitle()
     {
-        return $this->date;
+        return $this->title;
     }
 
     /**
@@ -102,13 +132,13 @@ class Advert
     }
 
     /**
-     * Get title
+     * Get author
      *
-     * @return string 
+     * @return string
      */
-    public function getTitle()
+    public function getAuthor()
     {
-        return $this->title;
+        return $this->author;
     }
 
     /**
@@ -125,13 +155,13 @@ class Advert
     }
 
     /**
-     * Get author
+     * Get content
      *
-     * @return string 
+     * @return string
      */
-    public function getAuthor()
+    public function getContent()
     {
-        return $this->author;
+        return $this->content;
     }
 
     /**
@@ -148,17 +178,25 @@ class Advert
     }
 
     /**
-     * Get content
+     * Get published
      *
-     * @return string 
+     * @return boolean
      */
-    public function getContent()
+    public function getPublished()
     {
-        return $this->content;
+        return $this->published;
     }
 
-    public function __construct()
+    /**
+     * Set published
+     *
+     * @param boolean $published
+     * @return Advert
+     */
+    public function setPublished($published)
     {
-        $this->date = new \Datetime();
+        $this->published = $published;
+
+        return $this;
     }
 }
