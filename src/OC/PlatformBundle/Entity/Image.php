@@ -20,6 +20,20 @@ class Image
     private $id;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="url", type="text")
+     */
+    private $url;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="alt", type="string", length=255)
+     */
+    private $alt;
+
+    /**
      * Get id
      *
      * @return integer
@@ -27,5 +41,35 @@ class Image
     public function getId()
     {
         return $this->id;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function setImage(Image $image = null)
+    {
+        $this->image = $image;
+    }
+
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    public function setUrl($url)
+    {
+        $this->url = $url;
+    }
+
+    public function getAlt()
+    {
+        return $this->alt;
+    }
+
+    public function setAlt($alt)
+    {
+        $this->alt = $alt;
     }
 }

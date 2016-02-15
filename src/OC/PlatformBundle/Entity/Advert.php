@@ -64,16 +64,6 @@ class Advert
         $this->date = new \Datetime();
     }
 
-    public function getImage()
-    {
-        return $this->image;
-    }
-
-    public function setImage(Image $image = null)
-    {
-        $this->image = $image;
-    }
-
     /**
      * Get id
      *
@@ -83,6 +73,19 @@ class Advert
     {
         return $this->id;
     }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function setAdvert(Advert $advert)
+    {
+        $this->advert = $advert;
+
+        return $this;
+    }
+
 
     /**
      * Get date
