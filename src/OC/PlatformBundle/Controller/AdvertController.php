@@ -4,13 +4,16 @@
 
 namespace OC\PlatformBundle\Controller;
 
+use OC\PlatformBundle\Entity\Advert;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use OC\PlatformBundle\Entity\Advert;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class AdvertController extends Controller
 {
+    /**
+     * @param integer $page
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function indexAction($page)
     {
         // Notre liste d'annonce en dur
@@ -41,6 +44,10 @@ class AdvertController extends Controller
         ));
     }
 
+    /**
+     * @param integer $id
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function viewAction($id)
     {
         $advert = array(
@@ -56,8 +63,13 @@ class AdvertController extends Controller
         ));
     }
 
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     public function addAction(Request $request)
     {
+        $params = array();
         // Création de l'entité
         $advert = new Advert();
         $advert->setTitle('Recherche développeur Symfony2.');
@@ -81,10 +93,16 @@ class AdvertController extends Controller
             return $this->redirect($this->generateUrl('oc_platform_view', array('id' => $advert->getId())));
         }
 
-        return $this->render('OCPlatformBundle:Advert:add.html.twig');
+        $params['advert'] = $advert;
+        return $this->render('OCPlatformBundle:Advert:add.html.twig', $params);
     }
 
-    public function editAction($id, Request $request)
+    /**
+     * @param integer $id
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function editAction(Request $request, $id)
     {
         $advert = array(
             'title'   => 'Recherche développpeur Symfony2',
@@ -99,6 +117,10 @@ class AdvertController extends Controller
         ));
     }
 
+    /**
+     * @param integer $id
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function deleteAction($id)
     {
         // Ici, on récupérera l'annonce correspondant à $id
@@ -108,6 +130,10 @@ class AdvertController extends Controller
         return $this->render('OCPlatformBundle:Advert:delete.html.twig');
     }
 
+    /**
+     * @param integer $limit
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function menuAction($limit)
     {
         // On fixe en dur une liste ici, bien entendu par la suite

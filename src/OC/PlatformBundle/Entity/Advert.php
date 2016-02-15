@@ -54,6 +54,10 @@ class Advert
      */
     private $published = true;
 
+    public function __construct()
+    {
+        $this->date = new \Datetime();
+    }
 
     /**
      * Get id
@@ -63,6 +67,16 @@ class Advert
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
     }
 
     /**
@@ -79,13 +93,13 @@ class Advert
     }
 
     /**
-     * Get date
+     * Get title
      *
-     * @return \DateTime 
+     * @return string
      */
-    public function getDate()
+    public function getTitle()
     {
-        return $this->date;
+        return $this->title;
     }
 
     /**
@@ -102,13 +116,13 @@ class Advert
     }
 
     /**
-     * Get title
+     * Get author
      *
-     * @return string 
+     * @return string
      */
-    public function getTitle()
+    public function getAuthor()
     {
-        return $this->title;
+        return $this->author;
     }
 
     /**
@@ -125,13 +139,13 @@ class Advert
     }
 
     /**
-     * Get author
+     * Get content
      *
-     * @return string 
+     * @return string
      */
-    public function getAuthor()
+    public function getContent()
     {
-        return $this->author;
+        return $this->content;
     }
 
     /**
@@ -148,18 +162,13 @@ class Advert
     }
 
     /**
-     * Get content
+     * Get published
      *
-     * @return string 
+     * @return boolean
      */
-    public function getContent()
+    public function getPublished()
     {
-        return $this->content;
-    }
-
-    public function __construct()
-    {
-        $this->date = new \Datetime();
+        return $this->published;
     }
 
     /**
@@ -173,15 +182,5 @@ class Advert
         $this->published = $published;
 
         return $this;
-    }
-
-    /**
-     * Get published
-     *
-     * @return boolean 
-     */
-    public function getPublished()
-    {
-        return $this->published;
     }
 }
