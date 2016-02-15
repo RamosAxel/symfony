@@ -13,11 +13,6 @@ use Doctrine\ORM\Mapping as ORM;
 class Advert
 {
     /**
-     * @ORM\OneToOne(targetEntity="OC\PlatformBundle\Entity\Image", cascade={"persist"})
-     */
-    private $image;
-
-    /**kk
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -25,6 +20,11 @@ class Advert
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @ORM\OneToOne(targetEntity="OC\PlatformBundle\Entity\Image", cascade={"persist"})
+     */
+    private $image;
 
     /**
      * @var \DateTime
@@ -59,20 +59,19 @@ class Advert
      */
     private $published = true;
 
-    public function setImage(Image $image = null)
+    public function __construct()
     {
-        $this->image = $image;
+        $this->date = new \Datetime();
     }
 
     public function getImage()
     {
         return $this->image;
     }
-    
 
-    public function __construct()
+    public function setImage(Image $image = null)
     {
-        $this->date = new \Datetime();
+        $this->image = $image;
     }
 
     /**
