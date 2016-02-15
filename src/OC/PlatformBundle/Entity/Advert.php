@@ -17,7 +17,7 @@ class Advert
      */
     private $image;
 
-    /**
+    /**kk
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
